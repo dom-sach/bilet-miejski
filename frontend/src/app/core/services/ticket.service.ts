@@ -16,15 +16,59 @@ export class TicketService {
 
   getAvailableTickets(): Observable<TicketType[]> {
     //return this.http.get<TicketType[]>(`${this.apiUrl}/offer`);
-    return of(mockTickets); // dla testowania frontendu
+
+    // testowanie bez backendu
+    return of(mockTickets);
   }
 
   purchaseTicket(request: TicketPurchaseRequest): Observable<Ticket> {
+    console.log('Symulacja zakupu biletu:', request);
     return this.http.post<Ticket>(`${this.apiUrl}/buy`, request);
   }
 
+  // getMyTickets(): Observable<Ticket[]> {
+  //   return this.http.get<Ticket[]>(`${this.apiUrl}/mine`);
+  // }
+
+  // wersja metody do testów bez backendu
   getMyTickets(): Observable<Ticket[]> {
-    return this.http.get<Ticket[]>(`${this.apiUrl}/mine`);
+    const myTickets: Ticket[] = [
+      {
+        id: 1,
+        code: 'ABC123',
+        type: 'SINGLE',
+        ticketType: {
+          id: 1,
+          name: 'Bilet jednorazowy ulgowy',
+          type: 'SINGLE',
+          description: 'Bilet jednorazowy dla osób uprawnionych do ulgi.',
+          price: 2.50,
+          reduced: true
+        },
+        status: 'VALIDATED',
+        purchaseDate: new Date().toISOString(),
+        validationDate: new Date().toISOString()
+      },
+      {
+        id: 2,
+        code: 'XYZ789',
+        type: 'PERIOD',
+        ticketType: {
+          id: 3,
+          name: 'Bilet okresowy 30-dniowy',
+          type: 'PERIOD',
+          description: 'Bilet ważny 30 dni od daty startu.',
+          price: 100.00,
+          reduced: false,
+          periodDays: 30
+        },
+        status: 'NEW',
+        purchaseDate: new Date().toISOString(),
+        validFrom: new Date().toISOString(),
+        validTo: new Date(new Date().setDate(new Date().getDate() + 30)).toISOString()
+      }
+    ];
+    return of(myTickets);
   }
 
   getTicketDetails(ticketId: number): Observable<Ticket> {

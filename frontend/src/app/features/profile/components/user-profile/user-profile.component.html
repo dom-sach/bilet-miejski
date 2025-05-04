@@ -1,0 +1,60 @@
+<h2>Profil użytkownika</h2>
+
+<div *ngIf="user">
+  <p><strong>Login:</strong> {{ user.username }}</p>
+  <p><strong>Rola:</strong> {{ user.roles.join(', ') }}</p>
+</div>
+
+<div *ngIf="loading" style="text-align: center; margin: 20px;">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div *ngIf="!loading">
+  <mat-tab-group>
+    <mat-tab label="Aktywne">
+      <div *ngIf="activeTickets.length === 0" style="margin: 20px; text-align: center;">
+        Brak aktywnych biletów.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+        <mat-card *ngFor="let ticket of activeTickets" style="width: 300px;">
+          <mat-card-header>
+            <mat-card-title>{{ ticket.ticketType.name }}</mat-card-title>
+            <mat-card-subtitle>Status: {{ ticket.status }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Kod: <strong>{{ ticket.code }}</strong></p>
+            <p>Data zakupu: {{ ticket.purchaseDate | date:'short' }}</p>
+            <p *ngIf="ticket.validTo">Ważny do: {{ ticket.validTo | date:'short' }}</p>
+            <p *ngIf="ticket.validationDate">Skasowano: {{ ticket.validationDate | date:'short' }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Wygasłe">
+      <div *ngIf="expiredTickets.length === 0" style="margin: 20px; text-align: center;">
+        Brak wygasłych biletów.
+      </div>
+
+      <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+        <mat-card *ngFor="let ticket of expiredTickets" style="width: 300px; opacity: 0.5;">
+          <mat-card-header>
+            <mat-card-title>{{ ticket.ticketType.name }}</mat-card-title>
+            <mat-card-subtitle>Status: {{ ticket.status }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <p>Kod: <strong>{{ ticket.code }}</strong></p>
+            <p>Data zakupu: {{ ticket.purchaseDate | date:'short' }}</p>
+            <p *ngIf="ticket.validTo">Wygasł: {{ ticket.validTo | date:'short' }}</p>
+            <p *ngIf="ticket.validationDate">Skasowano: {{ ticket.validationDate | date:'short' }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+  <button mat-stroked-button color="accent" [routerLink]="['/']">Powrót</button>
+</div>

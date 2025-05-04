@@ -22,5 +22,9 @@ export const routes: Routes = [
     loadChildren: () => import('./features/validator/validator.routes').then(m => m.VALIDATOR_ROUTES),
     canActivate: [AuthGuard, RoleGuard],
     data: { expectedRole: 'TICKET_INSPECTOR' }
+  },
+  {
+    path: 'profile',
+    loadChildren: () => import('./features/profile/profile.routes').then(m => m.PROFILE_ROUTES)
   }
 ];

@@ -9,5 +9,5 @@ export const TICKET_ROUTES: Routes = [
   { path: 'myTickets', component: MyTicketsComponent },
   { path: 'ticketDetails', component: TicketDetailsComponent },
   { path: 'ticketPurchase', component: TicketPurchaseComponent },
-  // { path: 'purchase/:id', component: TicketPurchaseComponent }, // później
+  { path: 'purchase/:id', component: TicketPurchaseComponent },
 ];

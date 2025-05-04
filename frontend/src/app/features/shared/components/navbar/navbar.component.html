@@ -1,1 +1,20 @@
-<p>navbar works!</p>
+<mat-toolbar color="primary">
+  <span style="flex: 1 1 auto;">Biletto - your electronic tickets</span>
+
+  <ng-container *ngIf="isLoggedIn(); else loggedOut">
+    <button mat-button [routerLink]="['/profile']">My Profile</button>
+  </ng-container>
+
+  <ng-template #loggedOut>
+    <button mat-button [routerLink]="['/auth/login']">Log In</button>
+  </ng-template>
+
+</mat-toolbar>
+<header>
+  <div id="nav-menu">
+    <button mat-raised-button color="primary" [routerLink]="['/auth/login']">Logowanie</button>
+    <button mat-raised-button color="accent" [routerLink]="['/auth/register']">Rejestracja</button>
+    <button mat-raised-button color="warn" [routerLink]="['/tickets']">Oferta biletów</button>
+    <button mat-raised-button color="primary" [routerLink]="['/validator']">Sprawdzanie biletu (bileter)</button>
+  </div>
+</header>

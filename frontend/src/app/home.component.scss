@@ -6,25 +6,3 @@ body {
   flex: 4
 }
 
-header {
-  margin: 0;
-  flex: 1;
-}
-
-#nav-menu {
-  display: flex;
-  flex: 1;
-  flex-direction: row;
-  gap: 10px;
-  background: #5252e7;
-  align-content: center;
-  justify-content: center;
-  padding-top: 1%;
-  padding-bottom: 1%;
-}
-
-h1 {
-  font-size: 2em;
-  color: #5252e7;
-  font-family: "Calibri", serif;
-}

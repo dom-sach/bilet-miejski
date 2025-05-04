@@ -1,1 +1,38 @@
-<p>ticket-purchase works!</p>
+<div *ngIf="loading" style="text-align: center; margin: 20px;">
+  Ładowanie...
+</div>
+
+<div *ngIf="!loading && ticketType">
+  <h2>Zakup biletu</h2>
+
+  <mat-card style="max-width: 400px; margin: 20px auto;">
+    <mat-card-header>
+      <mat-card-title>{{ ticketType.name }}</mat-card-title>
+      <mat-card-subtitle>{{ ticketType.price | currency:'PLN' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ ticketType.description }}</p>
+
+      <p *ngIf="ticketType.type === 'TIME'">Ważność: {{ ticketType.durationMinutes }} minut</p>
+      <p *ngIf="ticketType.type === 'PERIOD'">Okres: {{ ticketType.periodDays }} dni</p>
+
+      <form [formGroup]="form" *ngIf="ticketType.type === 'PERIOD'">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Data rozpoczęcia ważności</mat-label>
+          <input matInput [matDatepicker]="picker" formControlName="validityStartDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="purchase()">
+        Kup bilet
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+  <button mat-stroked-button color="accent" [routerLink]="['/tickets']">Powrót</button>
+</div>
