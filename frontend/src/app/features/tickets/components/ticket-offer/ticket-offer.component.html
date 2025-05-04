@@ -1,5 +1,30 @@
-<p>ticket-offer works!</p>
+<h2>Oferta biletów</h2>
 
-<!--<div style="text-align: center; margin-top: 20px;">-->
-<!--  <button mat-stroked-button color="accent" [routerLink]="['/']">Powrót</button>-->
-<!--</div>-->
+<div *ngIf="loading" style="text-align: center; margin: 20px;">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div *ngIf="!loading && tickets.length === 0" style="text-align: center; margin: 20px;">
+  Brak dostępnych biletów.
+</div>
+
+<div *ngIf="!loading" style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 20px;">
+  <mat-card *ngFor="let ticket of tickets" style="width: 300px;">
+    <mat-card-header>
+      <mat-card-title>{{ ticket.name }}</mat-card-title>
+      <mat-card-subtitle>{{ ticket.price | currency:'PLN' }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <p>{{ ticket.description }}</p>
+      <p *ngIf="ticket.type === 'TIME'">Ważność: {{ ticket.durationMinutes }} minut</p>
+      <p *ngIf="ticket.type === 'PERIOD'">Okres: {{ ticket.periodDays }} dni</p>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="['/tickets/purchase', ticket.id]">Kup bilet</button>
+    </mat-card-actions>
+  </mat-card>
+</div>
+
+<div style="text-align: center; margin-top: 20px;">
+  <button mat-stroked-button color="accent" [routerLink]="['/']">Powrót</button>
+</div>

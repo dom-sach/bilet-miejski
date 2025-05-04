@@ -5,8 +5,9 @@ import {TicketOfferComponent} from './components/ticket-offer/ticket-offer.compo
 import {TicketPurchaseComponent} from './components/ticket-purchase/ticket-purchase.component';
 
 export const TICKET_ROUTES: Routes = [
+  { path: '', component: TicketOfferComponent },
   { path: 'myTickets', component: MyTicketsComponent },
   { path: 'ticketDetails', component: TicketDetailsComponent },
-  { path: 'ticketOffers', component: TicketOfferComponent },
   { path: 'ticketPurchase', component: TicketPurchaseComponent },
+  // { path: 'purchase/:id', component: TicketPurchaseComponent }, // później
 ];

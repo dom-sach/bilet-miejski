@@ -1,13 +1,36 @@
-<h1 style="text-align: center; margin-bottom: 20px;">
-  Biletto - Elektroniczny Bilet Miejski
-</h1>
-<p style="text-align: center;">
-  Wybierz stronę:
-</p>
 
-<div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin: 20px auto;">
-  <button mat-raised-button color="primary" [routerLink]="['/auth/login']">Logowanie</button>
-  <button mat-raised-button color="accent" [routerLink]="['/auth/register']">Rejestracja</button>
-  <button mat-raised-button color="warn" [routerLink]="['/tickets']">Oferta biletów</button>
-  <button mat-raised-button color="primary" [routerLink]="['/validator']">Sprawdzanie biletu (bileter)</button>
-</div>
+<header>
+  <h1 style="text-align: center; margin-bottom: 20px;">
+    Biletto - Elektroniczny Bilet Miejski
+  </h1>
+
+  <div id="nav-menu">
+    <button mat-raised-button color="primary" [routerLink]="['/auth/login']">Logowanie</button>
+    <button mat-raised-button color="accent" [routerLink]="['/auth/register']">Rejestracja</button>
+    <button mat-raised-button color="warn" [routerLink]="['/tickets']">Oferta biletów</button>
+    <button mat-raised-button color="primary" [routerLink]="['/validator']">Sprawdzanie biletu (bileter)</button>
+  </div>
+</header>
+
+<body>
+
+  <!--Do testów - automatyczne logowanie-->
+  <div style="margin-top: 40px; text-align: center;">
+    <button mat-stroked-button color="primary" (click)="loginTest()">Zaloguj (Testowanie)</button>
+  </div>
+  <!--Do testów-->
+  <p style="text-align: center; font-style: italic; margin-bottom: 20px;">
+    Status:
+    <span *ngIf="isLoggedIn(); else notLoggedIn">
+      Zalogowany jako <strong>{{ getUsername() }}</strong>
+    </span>
+    <ng-template #notLoggedIn>
+      Nie zalogowany
+    </ng-template>
+  </p>
+  <!--Do testów - automatyczne wylogowanie-->
+  <div style="margin-top: 10px; text-align: center;">
+    <button mat-stroked-button color="warn" (click)="logoutTest()">Wyloguj (Testowanie)</button>
+  </div>
+</body>
+
