@@ -1,0 +1,13 @@
+<h1 style="text-align: center; margin-bottom: 20px;">
+  Biletto - Elektroniczny Bilet Miejski
+</h1>
+<p style="text-align: center;">
+  Wybierz stronę:
+</p>
+
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin: 20px auto;">
+  <button mat-raised-button color="primary" [routerLink]="['/auth/login']">Logowanie</button>
+  <button mat-raised-button color="accent" [routerLink]="['/auth/register']">Rejestracja</button>
+  <button mat-raised-button color="warn" [routerLink]="['/tickets']">Oferta biletów</button>
+  <button mat-raised-button color="primary" [routerLink]="['/validator']">Sprawdzanie biletu (bileter)</button>
+</div>

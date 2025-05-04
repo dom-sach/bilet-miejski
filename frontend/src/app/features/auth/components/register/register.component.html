@@ -1,0 +1,26 @@
+<h2>Rejestracja</h2>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" style="max-width: 400px; margin: 20px auto;">
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Nazwa użytkownika</mat-label>
+    <input matInput formControlName="username" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Email</mat-label>
+    <input matInput type="email" formControlName="email" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Hasło</mat-label>
+    <input matInput type="password" formControlName="password" />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" type="submit" [disabled]="loading">
+    Zarejestruj się
+  </button>
+</form>
+
+<div style="text-align: center; margin-top: 20px;">
+  <button mat-stroked-button color="accent" [routerLink]="['/']">Powrót</button>
+</div>
